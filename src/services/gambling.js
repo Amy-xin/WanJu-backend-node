@@ -22,7 +22,7 @@ import modelDef from '../models/index'
 export let testDB = async (ctx) =>{
     //console.log(modelDef.userDef)
     //console.log(sqlConfig)
-    const User = sequelize.define('user',modelDef.userModel.usrDefinition,modelDef.userModel.usrDBconfig) 
+    const User = sequelize.define('userlogin',modelDef.userlogin.userlogin,modelDef.userModel.usrLoginDBconfig) 
     User.create({ 
         name:ctx.request.body.user.userName,
         pwd:ctx.request.body.user.userPwd

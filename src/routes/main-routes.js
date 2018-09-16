@@ -20,4 +20,19 @@ router
   
   .post('/play/testDB',controllers.api.testDB)
 
+  .post('/play/addUserLogin',controllers.api.addUserLogin)
+  
+  .post('/play/findUserLoginByName',controllers.api.findUserLoginByName)
+
+  .post('/play/deleteUserLogin',controllers.api.deleteUserLogin)
+
+  .post('/play/updateUserLogin',controllers.api.updateUserLogin)
+
+  .post('/play/addUserSign',controllers.api.addUserSign)
+
+  .get('/play/findUserLoginAll',controllers.api.findUserLoginAll)
+
+  .get('/play/findUserLoginNotBoss',controllers.api.findUserLoginNotBoss)
+
+  .get('/play/findUserLoginStaff',controllers.api.findUserLoginStaff)
 module.exports = router

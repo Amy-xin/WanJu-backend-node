@@ -1,6 +1,7 @@
 import Koa2 from 'koa'
 import KoaBody from 'koa-body'
 import KoaStatic from 'koa-static2'
+import MySql from 'mysql'
 import {
   System as SystemConfig
 } from './config'
@@ -14,7 +15,9 @@ import fs from 'fs'
 const app = new Koa2()
 const env = process.env.NODE_ENV || 'development' // Current mode
 
-const publicKey = fs.readFileSync(path.join(__dirname, '../publicKey.pub'))
+//const publicKey = fs.readFileSync(path.join(__dirname, '../publicKey1.pub'))
+const privateKey = fs.readFileSync(path.join(__dirname, '../private.key'))
+const publicKey = fs.readFileSync(path.join(__dirname, '../public.key'))
 
 app
   .use((context, next) => {
@@ -30,7 +33,7 @@ app
   })
   .use(ErrorRoutesCatch())
   .use(KoaStatic('assets', path.resolve(__dirname, '../assets'))) // 静态资源
-  .use(jwt({ secret: publicKey }).unless({ path: [/^\/public|\/login|\/assets/] }))//扫描无需token即可访问的api
+  //.use(jwt({ secret: publicKey }).unless({ path: [/^\/public|\/login|\/assets|\/play\/findUserLoginByName/] }))//扫描无需token即可访问的api
   .use(KoaBody({
     multipart: true,
     strict: false,

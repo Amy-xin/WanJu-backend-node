@@ -1,16 +1,14 @@
-import Sequelize from 'sequelize'
+var Sequelize = require('sequelize');
 import { DB as DBConfig, System as SystemConfig } from '../config'
 
 export default new Sequelize(DBConfig.database, DBConfig.username, DBConfig.password, {
   host: DBConfig.host,
   //port:DBConfig.port,
   dialect: SystemConfig.db_type,
-  dialectOptions: { // MySQL > 5.5，其它数据库删除此项
-    charset: 'utf8mb4',
-    collate: 'utf8mb4_unicode_520_ci',
-    supportBigNumbers: true,
-    bigNumberStrings: true
-  },
+  dialectOptions: {
+    timestamps: false
+    //socketPath: '/tmp/mysql.sock' // 指定套接字文件路径
+   },
   pool: {
     max: 50,
     min: 0,
